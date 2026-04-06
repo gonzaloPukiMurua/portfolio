@@ -1,26 +1,62 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --navy: #0A1428;
+  --cyan: #00F0FF;
+  --gray-900: #111827;
+  --gray-800: #1F2937;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: #0A1428;
+  color: white;
+  scroll-behavior: smooth;
+}
+
+h1, h2, h3 {
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+
+/* Enhanced Hero Background */
+.hero-bg {
+  background: linear-gradient(135deg, #0A1428 0%, #0F1C3A 50%, #0A1428 100%);
+}
+
+/* Section spacing */
+.section {
+  scroll-margin-top: 90px;
+}
+
+/* Card hover effects */
+.card-hover {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 25px -5px rgb(0 240 255 / 0.1), 
+              0 8px 10px -6px rgb(0 240 255 / 0.1);
+}
+
+/* Button glow */
+.glow-cyan {
+  position: relative;
+}
+
+.glow-cyan::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(0, 240, 255, 0.4), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+  border-radius: inherit;
+  z-index: -1;
+}
+
+.glow-cyan:hover::after {
+  opacity: 1;
 }
