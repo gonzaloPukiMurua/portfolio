@@ -38,35 +38,46 @@ export const en = {
     lead: 'Every project starts with a short discovery call and a fixed scope. Prices are starting points; the final quote depends on your scope.',
     from: 'from',
     popular: 'Most popular',
-    cta: 'Ask about this package',
+    cta: 'Get a quote',
+    // Package contents and durations: drafts pending owner approval (prices are final).
     tiers: {
-      starter: {
-        name: 'Starter',
-        duration: '4–5 weeks',
+      website: {
+        name: 'Website',
+        duration: '1–2 weeks',
         features: [
-          '3–5 page business site or landing page',
-          'Next.js or WordPress',
-          'Basic CMS and forms',
-          'Mobile responsive and SEO basics',
+          'Landing page or site of up to 5 pages',
+          'Custom design, mobile first',
+          'Contact form and SEO basics',
+          'Launch on your domain',
         ],
       },
-      growth: {
-        name: 'Growth',
-        duration: '5–7 weeks',
+      redesign: {
+        name: 'Redesign',
+        duration: '2–4 weeks',
         features: [
-          '8–10 pages and a blog',
-          'Shopify or custom store',
-          'Payment integrations',
-          '3 revision rounds and training',
+          'New design and structure for your current site',
+          'Rebuilt on fast, modern code',
+          'Content moved over from the old site',
+          'Redirects to keep your search rankings',
         ],
       },
-      premium: {
-        name: 'Premium',
-        duration: '7–9 weeks',
+      cms: {
+        name: 'CMS website',
+        duration: '3–5 weeks',
         features: [
-          'Full custom web app or SaaS MVP',
-          'Nest.js backend and PostgreSQL',
-          'Auth, Stripe and dashboards',
+          'A site you can update yourself',
+          'Content management system set up',
+          'Blog or news section',
+          'Training to manage your content',
+        ],
+      },
+      custom: {
+        name: 'Custom software',
+        duration: '6–8 weeks',
+        features: [
+          'Web app or internal tool built for your process',
+          'Database, user accounts and admin panel',
+          'Integrations with your tools (payments, email)',
         ],
       },
     },

@@ -14,15 +14,18 @@ export const contactLinks = {
 
 export const formspreeEndpoint = 'https://formspree.io/f/xeepveea';
 
-export const tiers: TierId[] = ['starter', 'growth', 'premium'];
+// Ordered by price.
+export const tiers: TierId[] = ['website', 'redesign', 'cms', 'custom'];
 
-export const popularTier: TierId = 'growth';
+/** Highlighted as "most popular"; null until the owner picks one. */
+export const popularTier: TierId | null = null;
 
-/** Base prices in USD. Owner decision; placeholders until final amounts are set. */
+/** Base prices in USD, set by the owner on 2026-09-29. */
 export const basePrices: Record<TierId, number> = {
-  starter: 4500,
-  growth: 10500,
-  premium: 19000,
+  website: 800,
+  redesign: 2000,
+  cms: 2500,
+  custom: 4000,
 };
 
 const priceFormats: Record<Locale, Intl.NumberFormat> = {

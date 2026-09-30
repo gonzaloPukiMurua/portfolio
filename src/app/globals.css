@@ -75,23 +75,21 @@
 }
 
 /*
- * Reveal on scroll: fade in and rise 12px as a section enters the viewport.
- * Pure CSS (scroll-driven animation): no JavaScript, and content is simply
- * visible in browsers without support or with reduced motion turned on.
+ * Reveal on scroll: a section fades in and rises 12px once, when it enters
+ * the viewport. The hidden state only applies under `.js`, which the inline
+ * script in RootDocument sets, so content stays visible without JavaScript.
+ * (A scroll-driven animation was tried first; it left text semi-transparent
+ * near the bottom of the screen, failing contrast.)
  */
-@keyframes reveal {
-  from {
+@media (prefers-reduced-motion: no-preference) {
+  .js .reveal {
+    transition:
+      opacity 300ms ease-out,
+      transform 300ms ease-out;
+  }
+
+  .js .reveal:not(.is-visible) {
     opacity: 0;
     transform: translateY(12px);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  @supports (animation-timeline: view()) {
-    .reveal {
-      animation: reveal ease-out both;
-      animation-timeline: view();
-      animation-range: entry 0% entry 35%;
-    }
   }
 }

@@ -7,7 +7,7 @@ export default function About({ dictionary }: { dictionary: Dictionary }) {
   const { about } = dictionary;
 
   return (
-    <section id="about" aria-labelledby="about-title" className={`${pageContainer} ${sectionSpacing} reveal`}>
+    <section suppressHydrationWarning id="about" aria-labelledby="about-title" className={`${pageContainer} ${sectionSpacing} reveal`}>
       <div className="grid items-center gap-10 md:grid-cols-12 lg:gap-16">
         <div className="md:col-span-5 lg:col-span-4">
           {/* The source photo is square; it is cropped to 4:5 here. */}

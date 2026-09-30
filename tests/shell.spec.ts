@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 
 const routes = [
   { path: '/', lang: 'en' },
-  { path: '/es', lang: 'es' },
+  { path: '/es/', lang: 'es' },
 ] as const;
 
 for (const { path, lang } of routes) {
@@ -29,7 +29,7 @@ test('language toggle keeps the current section', async ({ page }) => {
     .getByRole('navigation', { name: 'Language' })
     .getByRole('link', { name: 'ES' })
     .click();
-  await expect(page).toHaveURL(/\/es#services$/);
+  await expect(page).toHaveURL(/\/es\/#services$/);
   await expect(page.locator('html')).toHaveAttribute('lang', 'es');
 
   await page
@@ -41,8 +41,14 @@ test('language toggle keeps the current section', async ({ page }) => {
   await expect(page.locator('html')).toHaveAttribute('lang', 'en');
 });
 
-test('language toggle marks the current language', async ({ page }) => {
+test('/es redirects to the canonical /es/', async ({ page }) => {
   await page.goto('/es');
+  await expect(page).toHaveURL(/\/es\/$/);
+  await expect(page.locator('html')).toHaveAttribute('lang', 'es');
+});
+
+test('language toggle marks the current language', async ({ page }) => {
+  await page.goto('/es/');
   const toggle = page.getByRole('banner').getByRole('navigation', { name: 'Idioma' });
   await expect(toggle.getByRole('link', { name: 'ES' })).toHaveAttribute('aria-current', 'page');
   await expect(toggle.getByRole('link', { name: 'EN' })).not.toHaveAttribute('aria-current');
@@ -75,7 +81,10 @@ test('mobile menu opens, closes with Escape and closes on link click', async ({ 
   await expect(page).toHaveURL(/#work$/);
 });
 
-test('skip link moves focus to the main content', async ({ page }) => {
+test('skip link moves focus to the main content', async ({ page, isMobile }) => {
+  // The skip link serves keyboard users; the touch emulation has no sequential
+  // keyboard navigation. Desktop Chromium and Firefox cover it.
+  test.skip(isMobile, 'keyboard navigation is not emulated on touch devices');
   await page.goto('/');
   await page.keyboard.press('Tab');
   const skipLink = page.getByRole('link', { name: 'Skip to content' });

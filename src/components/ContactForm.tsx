@@ -22,6 +22,17 @@ export default function ContactForm({ copy, serviceOptions, email }: Props) {
   const [errors, setErrors] = useState<Errors>({});
   const [status, setStatus] = useState<Status>('idle');
   const successHeading = useRef<HTMLHeadingElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
+
+  // Until this runs, the form is a plain HTML form: it posts straight to
+  // Formspree and relies on native `required` validation. Once hydrated, it
+  // switches to inline validation and fetch.
+  useEffect(() => {
+    const form = formRef.current;
+    if (!form) return;
+    form.noValidate = true;
+    form.dataset.ready = '';
+  }, []);
 
   useEffect(() => {
     if (status === 'success') successHeading.current?.focus();
@@ -89,6 +100,7 @@ export default function ContactForm({ copy, serviceOptions, email }: Props) {
   const fieldProps = (name: FieldName) => ({
     id: `contact-${name}`,
     name,
+    required: true,
     'aria-invalid': errors[name] ? true : undefined,
     'aria-describedby': errors[name] ? `contact-${name}-error` : undefined,
     className: `mt-2 w-full rounded-control border bg-surface px-3.5 py-2.5 transition-colors duration-150 focus:border-accent ${
@@ -110,7 +122,14 @@ export default function ContactForm({ copy, serviceOptions, email }: Props) {
     );
 
   return (
-    <form noValidate onSubmit={handleSubmit} onInput={handleInput} className="space-y-6">
+    <form
+      ref={formRef}
+      action={formspreeEndpoint}
+      method="POST"
+      onSubmit={handleSubmit}
+      onInput={handleInput}
+      className="space-y-6"
+    >
       <div className="grid gap-6 md:grid-cols-2">
         <div>
           {label('name', copy.fields.name.label)}

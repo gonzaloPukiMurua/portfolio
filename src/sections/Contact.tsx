@@ -12,7 +12,7 @@ export default function Contact({ dictionary }: { dictionary: Dictionary }) {
   ];
 
   return (
-    <section id="contact" aria-labelledby="contact-title" className={`${pageContainer} ${sectionSpacing} reveal`}>
+    <section suppressHydrationWarning id="contact" aria-labelledby="contact-title" className={`${pageContainer} ${sectionSpacing} reveal`}>
       <SectionHeader id="contact" eyebrow={contact.eyebrow} title={contact.title} lead={contact.lead} />
       <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
         <div className={`${card} border-line p-6 md:p-8 lg:col-span-8`}>

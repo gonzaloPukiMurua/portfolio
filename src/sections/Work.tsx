@@ -15,7 +15,7 @@ export default function Work({ locale, dictionary }: Props) {
   const featureFirst = projects.length % 2 === 1;
 
   return (
-    <section id="work" aria-labelledby="work-title" className={`${pageContainer} ${sectionSpacing} reveal`}>
+    <section suppressHydrationWarning id="work" aria-labelledby="work-title" className={`${pageContainer} ${sectionSpacing} reveal`}>
       <SectionHeader id="work" eyebrow={work.eyebrow} title={work.title} lead={work.lead} />
       <ul className="grid gap-6 md:grid-cols-2">
         {projects.map((project, index) => (

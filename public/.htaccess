@@ -1,0 +1,17 @@
+# Hostinger (LiteSpeed/Apache) configuration for the static export in out/.
+# HTTPS itself is forced from hPanel (Security > SSL > Force HTTPS), not here,
+# to avoid a redirect loop behind Hostinger's CDN.
+
+ErrorDocument 404 /404.html
+
+# One canonical host: gelumdigital.online -> www.gelumdigital.online
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^gelumdigital\.online$ [NC]
+RewriteRule ^ https://www.gelumdigital.online%{REQUEST_URI} [L,R=301]
+
+# Hashed build assets never change: cache them for a year.
+<IfModule mod_headers.c>
+  <FilesMatch "\.(js|css|woff2)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+</IfModule>

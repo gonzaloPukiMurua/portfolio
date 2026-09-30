@@ -11,7 +11,12 @@ export default defineConfig({
   use: {
     baseURL: `http://localhost:${port}`,
   },
-  projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
+  // Browser coverage from the approved scope: Chrome, Firefox and Safari on iOS.
+  projects: [
+    { name: 'chromium', use: { ...devices['Desktop Chrome'] } },
+    { name: 'firefox', use: { ...devices['Desktop Firefox'] } },
+    { name: 'mobile-safari', use: { ...devices['iPhone 13'] } },
+  ],
   webServer: {
     command: 'node scripts/serve-out.mjs',
     port,

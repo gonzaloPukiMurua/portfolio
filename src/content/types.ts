@@ -5,12 +5,12 @@ export const locales: Locale[] = ['en', 'es'];
 /** Path of each locale's home page. */
 export const localePath: Record<Locale, string> = {
   en: '/',
-  es: '/es',
+  es: '/es/',
 };
 
 export type SectionId = 'services' | 'work' | 'about' | 'contact';
 
-export type TierId = 'starter' | 'growth' | 'premium';
+export type TierId = 'website' | 'redesign' | 'cms' | 'custom';
 
 type SectionIntro = {
   eyebrow: string;

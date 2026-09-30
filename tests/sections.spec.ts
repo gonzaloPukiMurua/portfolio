@@ -2,17 +2,25 @@ import { expect, test, type Page } from '@playwright/test';
 
 const formspree = 'https://formspree.io/**';
 
-async function fillValidForm(page: Page) {
+/** Opens a page and waits until the contact form is hydrated (see ContactForm). */
+async function openContactForm(page: Page, path = '/') {
+  await page.goto(path);
   const form = page.locator('#contact form');
+  await expect(form).toHaveAttribute('data-ready', '');
+  return form;
+}
+
+async function fillValidForm(page: Page) {
+  const form = await openContactForm(page);
   await form.getByLabel('Name').fill('Ada Lovelace');
   await form.getByLabel('Email').fill('ada@example.com');
-  await form.getByLabel('What do you need?').selectOption('Starter');
+  await form.getByLabel('What do you need?').selectOption('Website');
   await form.getByLabel('Project details').fill('A five page site for my bakery.');
   return form;
 }
 
 test.describe('hero', () => {
-  for (const path of ['/', '/es']) {
+  for (const path of ['/', '/es/']) {
     for (const viewport of [
       { width: 360, height: 740 },
       { width: 1440, height: 900 },
@@ -41,6 +49,34 @@ test.describe('hero', () => {
       });
     }
   }
+});
+
+test.describe('reveal', () => {
+  test('a section fades in once it is scrolled into view', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto('/');
+    const contact = page.locator('#contact');
+    await expect(contact).not.toHaveClass(/is-visible/);
+    await contact.scrollIntoViewIfNeeded();
+    await expect(contact).toHaveClass(/is-visible/);
+    await expect(contact).toHaveCSS('opacity', '1');
+  });
+
+  test('content is visible without JavaScript', async ({ browser }) => {
+    const context = await browser.newContext({ javaScriptEnabled: false });
+    const page = await context.newPage();
+    await page.goto('/');
+    await expect(page.locator('#contact')).toHaveCSS('opacity', '1');
+    await context.close();
+  });
+
+  test('nothing is hidden with reduced motion', async ({ browser }) => {
+    const context = await browser.newContext({ reducedMotion: 'reduce' });
+    const page = await context.newPage();
+    await page.goto('/');
+    await expect(page.locator('#contact')).toHaveCSS('opacity', '1');
+    await context.close();
+  });
 });
 
 test.describe('work', () => {
@@ -75,8 +111,7 @@ test.describe('contact form', () => {
       requests++;
       return route.fulfill({ status: 200, json: { ok: true } });
     });
-    await page.goto('/');
-    const form = page.locator('#contact form');
+    const form = await openContactForm(page);
     await form.getByRole('button', { name: 'Send message' }).click();
 
     for (const [label, message] of [
@@ -94,7 +129,6 @@ test.describe('contact form', () => {
   });
 
   test('an invalid email is rejected, and the error clears on edit', async ({ page }) => {
-    await page.goto('/');
     const form = await fillValidForm(page);
     const email = form.getByLabel('Email');
     await email.fill('not-an-email');
@@ -111,7 +145,6 @@ test.describe('contact form', () => {
       body = route.request().postData() ?? '';
       return route.fulfill({ status: 200, json: { ok: true } });
     });
-    await page.goto('/');
     const form = await fillValidForm(page);
     await form.getByRole('button', { name: 'Send message' }).click();
 
@@ -119,12 +152,11 @@ test.describe('contact form', () => {
     await expect(heading).toBeVisible();
     await expect(heading).toBeFocused();
     expect(body).toContain('Ada Lovelace');
-    expect(body).toContain('Starter');
+    expect(body).toContain('Website');
   });
 
   test('a server error shows the error state with the email address', async ({ page }) => {
     await page.route(formspree, (route) => route.fulfill({ status: 500, json: { error: 'boom' } }));
-    await page.goto('/');
     const form = await fillValidForm(page);
     await form.getByRole('button', { name: 'Send message' }).click();
     const alert = form.getByRole('alert');
@@ -137,16 +169,25 @@ test.describe('contact form', () => {
 
   test('a network failure shows the error state', async ({ page }) => {
     await page.route(formspree, (route) => route.abort('internetdisconnected'));
-    await page.goto('/');
     const form = await fillValidForm(page);
     await form.getByRole('button', { name: 'Send message' }).click();
     await expect(form.getByRole('alert')).toBeVisible();
     await expect(form.getByRole('button', { name: 'Send message' })).toBeEnabled();
   });
 
-  test('errors are in Spanish on /es', async ({ page }) => {
-    await page.goto('/es');
+  test('without JavaScript the form still posts to Formspree with native validation', async ({ browser }) => {
+    const context = await browser.newContext({ javaScriptEnabled: false });
+    const page = await context.newPage();
+    await page.goto('/');
     const form = page.locator('#contact form');
+    await expect(form).toHaveAttribute('action', /^https:\/\/formspree\.io\/f\//);
+    await expect(form).toHaveAttribute('method', /post/i);
+    await expect(form.getByLabel('Name')).toHaveAttribute('required', '');
+    await context.close();
+  });
+
+  test('errors are in Spanish on /es', async ({ page }) => {
+    const form = await openContactForm(page, '/es/');
     await form.getByRole('button', { name: 'Enviar mensaje' }).click();
     await expect(form.getByLabel('Nombre')).toHaveAccessibleDescription('Ingresá tu nombre.');
   });

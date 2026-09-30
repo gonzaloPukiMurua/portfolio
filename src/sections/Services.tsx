@@ -19,6 +19,7 @@ export default function Services({ locale, dictionary }: Props) {
 
   return (
     <section
+      suppressHydrationWarning
       id="services"
       aria-labelledby="services-title"
       className={`${pageContainer} ${sectionSpacing} reveal`}
@@ -29,15 +30,15 @@ export default function Services({ locale, dictionary }: Props) {
         title={services.title}
         lead={services.lead}
       />
-      {/* 3 columns only from lg: at tablet width the cards get too narrow. */}
-      <ul className="grid gap-6 lg:grid-cols-3">
+      {/* 4 packages: 2×2 from tablet, one row only from xl, where the cards are wide enough. */}
+      <ul className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
         {tiers.map((id) => {
           const tier = services.tiers[id];
           const popular = id === popularTier;
           return (
             <li
               key={id}
-              className={`${card} flex flex-col p-6 md:p-8 ${popular ? 'border-accent' : 'border-line'}`}
+              className={`${card} flex flex-col p-6 md:p-8 xl:p-6 ${popular ? 'border-accent' : 'border-line'}`}
             >
               <div className="flex items-baseline justify-between gap-4">
                 <h3 className="text-card font-semibold">{tier.name}</h3>

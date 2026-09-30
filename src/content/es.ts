@@ -38,35 +38,46 @@ export const es = {
     lead: 'Cada proyecto empieza con una llamada breve y un alcance cerrado. Los precios son un punto de partida; el presupuesto final depende del alcance.',
     from: 'desde',
     popular: 'El más elegido',
-    cta: 'Consultar por este paquete',
+    cta: 'Pedir presupuesto',
+    // Contenido y plazos de los paquetes: borradores pendientes de aprobación (los precios son finales).
     tiers: {
-      starter: {
-        name: 'Starter',
-        duration: '4–5 semanas',
+      website: {
+        name: 'Sitio web',
+        duration: '1–2 semanas',
         features: [
-          'Sitio de 3 a 5 páginas o landing page',
-          'Next.js o WordPress',
-          'CMS básico y formularios',
-          'Adaptado a mobile y SEO básico',
+          'Landing page o sitio de hasta 5 páginas',
+          'Diseño a medida, pensado primero para mobile',
+          'Formulario de contacto y SEO básico',
+          'Publicación en tu dominio',
         ],
       },
-      growth: {
-        name: 'Growth',
-        duration: '5–7 semanas',
+      redesign: {
+        name: 'Rediseño',
+        duration: '2–4 semanas',
         features: [
-          'De 8 a 10 páginas y un blog',
-          'Tienda Shopify o a medida',
-          'Integración de pagos',
-          '3 rondas de revisión y capacitación',
+          'Nuevo diseño y estructura para tu sitio actual',
+          'Reconstruido con código moderno y rápido',
+          'Migración del contenido del sitio anterior',
+          'Redirecciones para no perder posicionamiento',
         ],
       },
-      premium: {
-        name: 'Premium',
-        duration: '7–9 semanas',
+      cms: {
+        name: 'Sitio con CMS',
+        duration: '3–5 semanas',
         features: [
-          'Aplicación web a medida o MVP de SaaS',
-          'Backend con Nest.js y PostgreSQL',
-          'Autenticación, Stripe y paneles',
+          'Un sitio que podés actualizar vos',
+          'Gestor de contenidos configurado',
+          'Sección de blog o novedades',
+          'Capacitación para manejar tu contenido',
+        ],
+      },
+      custom: {
+        name: 'Software a medida',
+        duration: '6–8 semanas',
+        features: [
+          'Aplicación web o herramienta interna para tu proceso',
+          'Base de datos, usuarios y panel de administración',
+          'Integraciones con tus herramientas (pagos, email)',
         ],
       },
     },
