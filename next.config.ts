@@ -1,13 +1,15 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
+  // Fully static site: `next build` writes plain HTML/CSS/JS to `out/`.
+  output: 'export',
+  // The default image loader needs a server; images are shipped pre-sized instead.
   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'images.unsplash.com',
-      },
-    ],
+    unoptimized: true,
+  },
+  experimental: {
+    // Needed for a 404 page when the app has one root layout per language.
+    globalNotFound: true,
   },
 };
 

@@ -1,24 +1,18 @@
-import { MetadataRoute } from 'next';
+import type { MetadataRoute } from 'next';
+import { siteUrl } from '@/content';
+import { localePath } from '@/content/types';
 
+export const dynamic = 'force-static';
+
+// Real routes only: `#section` URLs are not separate pages for search engines.
 export default function sitemap(): MetadataRoute.Sitemap {
+  const languages = {
+    en: `${siteUrl}${localePath.en}`,
+    es: `${siteUrl}${localePath.es}`,
+  };
+
   return [
-    {
-      url: 'https://www.gelumdigital.online',
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 1,
-    },
-    {
-      url: 'https://www.gelumdigital.online/#services',
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: 'https://www.gelumdigital.online/#projects',
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
+    { url: languages.en, changeFrequency: 'monthly', priority: 1, alternates: { languages } },
+    { url: languages.es, changeFrequency: 'monthly', priority: 0.9, alternates: { languages } },
   ];
 }
