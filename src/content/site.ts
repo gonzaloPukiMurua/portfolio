@@ -164,7 +164,7 @@ export const content = {
         // Edited from Luisa's draft (2026-10-21); pending her and the owner's approval.
         bio: 'Designs every site, from page structure to interface and copy, and tests it before launch. Background in UX/UI design, UX writing and QA testing.',
         details: 'English C2',
-        photo: { src: '/team/luisa.webp', width: 800, height: 1000 },
+        photo: { src: '/team/luisa-v2.webp', width: 400, height: 500 },
         links: [
           { label: 'LinkedIn', href: 'https://www.linkedin.com/in/luisa-maria-ferrari-romero-7950b2271/' },
         ],
