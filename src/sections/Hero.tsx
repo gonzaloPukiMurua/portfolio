@@ -1,8 +1,9 @@
+import BookingLink from '@/components/BookingLink';
 import { buttonPrimary, monoLabel, pageContainer, textLink } from '@/components/ui/styles';
-import type { Dictionary } from '@/content/types';
+import { content } from '@/content';
 
-export default function Hero({ dictionary }: { dictionary: Dictionary }) {
-  const { hero } = dictionary;
+export default function Hero() {
+  const { hero } = content;
 
   return (
     <section aria-labelledby="hero-title" className={`${pageContainer} pt-10 pb-16 md:pt-24 md:pb-24`}>
@@ -18,9 +19,7 @@ export default function Hero({ dictionary }: { dictionary: Dictionary }) {
         </h1>
         <p className="mt-6 max-w-2xl text-lead text-muted">{hero.lead}</p>
         <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
-          <a href="#contact" className={buttonPrimary}>
-            {hero.primaryCta}
-          </a>
+          <BookingLink className={buttonPrimary} />
           <a href="#work" className={textLink}>
             {hero.secondaryCta} <span aria-hidden="true">→</span>
           </a>

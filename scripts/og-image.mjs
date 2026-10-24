@@ -1,10 +1,10 @@
-// Generates the social share images (1200×630) in public/og/, one per locale.
+// Generates the social share image (1200×630) in public/og/.
 // The headline is read from the built pages, so run `npm run build` first,
 // and re-run this after any change to the hero copy: `npm run og`.
 import { chromium } from '@playwright/test';
 import { mkdir, readFile } from 'node:fs/promises';
 
-const pages = { en: 'out/index.html', es: 'out/es/index.html' };
+const pages = { en: 'out/index.html' };
 
 function headline(html) {
   const match = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/);

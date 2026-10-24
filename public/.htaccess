@@ -9,6 +9,9 @@ RewriteEngine On
 RewriteCond %{HTTP_HOST} ^gelumdigital\.online$ [NC]
 RewriteRule ^ https://www.gelumdigital.online%{REQUEST_URI} [L,R=301]
 
+# The Spanish version was removed in v2: send old links to the home page.
+RewriteRule ^es(/.*)?$ / [L,R=301]
+
 # Hashed build assets never change: cache them for a year.
 <IfModule mod_headers.c>
   <FilesMatch "\.(js|css|woff2)$">

@@ -1,55 +1,39 @@
-import type { Locale } from './types';
-
-type Localized = Record<Locale, string>;
-
 export type Project = {
   slug: string;
   name: string;
-  category: Localized;
-  description: Localized;
+  category: string;
+  description: string;
   stack: string[];
   demoUrl: string;
-  /** Screenshot of the demo home page. Its alt text comes from the dictionary. */
+  /** Screenshot of the demo home page. Its alt text comes from the site copy. */
   image: { src: string; width: number; height: number };
+  /** Lighthouse mobile scores as measured on `measured` (YYYY-MM-DD); null hides them. */
+  lighthouse: { performance: number; accessibility: number; measured: string } | null;
 };
 
-// Concept projects: fictional businesses, built as static demos.
-// Descriptions are drafts, rewritten in sprint 03.
+// Concept projects: fictional Australian trades businesses, built as static demos.
+// Descriptions are drafts pending owner approval.
 export const projects: Project[] = [
   {
     slug: 'sparkline-electrical',
     name: 'Sparkline Electrical',
-    category: { en: 'Electrical services', es: 'Servicios eléctricos' },
-    description: {
-      en: 'Lead-focused site for a local electrician: upfront pricing, service areas and a fast quote request.',
-      es: 'Sitio orientado a consultas para un electricista local: precios claros, zonas de servicio y pedido de presupuesto rápido.',
-    },
+    category: 'Residential electrician',
+    description:
+      'Lead-focused site for a local electrician: upfront pricing, service areas and a fast quote request.',
     stack: ['HTML', 'CSS', 'JavaScript'],
     demoUrl: 'https://tjelectrical.gelumdigital.online/',
     image: { src: '/work/sparkline-electrical.webp', width: 1280, height: 800 },
+    lighthouse: { performance: 89, accessibility: 89, measured: '2026-10-20' },
   },
   {
     slug: 'voltline-electrical',
     name: 'Voltline Electrical & Refrigeration',
-    category: { en: 'Electrical & refrigeration', es: 'Electricidad y refrigeración' },
-    description: {
-      en: 'Service site for homes, businesses and rural properties, organised around clear service lines.',
-      es: 'Sitio de servicios para hogares, comercios y campos, organizado por líneas de servicio claras.',
-    },
+    category: 'Commercial and rural electrical',
+    description:
+      'Service site for homes, businesses and rural properties, organised around clear service lines.',
     stack: ['HTML', 'CSS', 'JavaScript'],
     demoUrl: 'https://ballaratelectric.gelumdigital.online/',
     image: { src: '/work/voltline-electrical.webp', width: 1280, height: 800 },
-  },
-  {
-    slug: 'estudio-faro-contable',
-    name: 'Estudio Faro Contable',
-    category: { en: 'Accounting firm', es: 'Estudio contable' },
-    description: {
-      en: 'Spanish-language site for an accounting firm serving SMBs and freelancers, built around direct contact.',
-      es: 'Sitio para un estudio contable que atiende pymes y autónomos, pensado para el contacto directo.',
-    },
-    stack: ['HTML', 'CSS', 'JavaScript'],
-    demoUrl: 'https://estudiopr.gelumdigital.online/',
-    image: { src: '/work/estudio-faro-contable.webp', width: 1280, height: 800 },
+    lighthouse: { performance: 90, accessibility: 90, measured: '2026-10-20' },
   },
 ];

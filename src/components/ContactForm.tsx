@@ -2,8 +2,7 @@
 
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { buttonPrimary, textLink } from '@/components/ui/styles';
-import { formspreeEndpoint } from '@/content';
-import type { Dictionary } from '@/content/types';
+import { formspreeEndpoint, type content } from '@/content';
 
 type FieldName = 'name' | 'email' | 'service' | 'message';
 type Errors = Partial<Record<FieldName, string>>;
@@ -13,12 +12,15 @@ const fieldOrder: FieldName[] = ['name', 'email', 'service', 'message'];
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 type Props = {
-  copy: Dictionary['contact'];
+  copy: (typeof content)['contact'];
   serviceOptions: string[];
   email: string;
+  /** Calendly page offered after a successful submission; null hides the offer. */
+  bookingUrl: string | null;
+  bookingLabel: string;
 };
 
-export default function ContactForm({ copy, serviceOptions, email }: Props) {
+export default function ContactForm({ copy, serviceOptions, email, bookingUrl, bookingLabel }: Props) {
   const [errors, setErrors] = useState<Errors>({});
   const [status, setStatus] = useState<Status>('idle');
   const successHeading = useRef<HTMLHeadingElement>(null);
@@ -93,6 +95,14 @@ export default function ContactForm({ copy, serviceOptions, email }: Props) {
           {copy.success.title}
         </h3>
         <p className="mt-2 text-muted">{copy.success.body}</p>
+        {bookingUrl && (
+          <p className="mt-6">
+            <span className="text-muted">{copy.success.book}</span>{' '}
+            <a href={bookingUrl} target="_blank" rel="noopener noreferrer" className={textLink}>
+              {bookingLabel} <span aria-hidden="true">↗</span>
+            </a>
+          </p>
+        )}
       </div>
     );
   }
@@ -156,6 +166,26 @@ export default function ContactForm({ copy, serviceOptions, email }: Props) {
           ))}
         </select>
         {error('service')}
+      </div>
+
+      {/* Optional on purpose: asking for a budget should not stop anyone from writing. */}
+      <div>
+        <label htmlFor="contact-budget" className="text-sm font-medium">
+          {copy.fields.budget.label}
+        </label>
+        <select
+          id="contact-budget"
+          name="budget"
+          defaultValue=""
+          className="mt-2 w-full rounded-control border border-field bg-surface px-3.5 py-2.5 transition-colors duration-150 focus:border-accent"
+        >
+          <option value="">{copy.fields.budget.placeholder}</option>
+          {copy.fields.budget.options.map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
       </div>
 
       <div>

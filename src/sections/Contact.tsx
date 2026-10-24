@@ -1,11 +1,10 @@
 import ContactForm from '@/components/ContactForm';
 import SectionHeader from '@/components/ui/SectionHeader';
 import { card, pageContainer, sectionSpacing, textLink } from '@/components/ui/styles';
-import { contactLinks, tiers } from '@/content';
-import type { Dictionary } from '@/content/types';
+import { content, contactLinks, tiers } from '@/content';
 
-export default function Contact({ dictionary }: { dictionary: Dictionary }) {
-  const { contact, services } = dictionary;
+export default function Contact() {
+  const { contact, services, hero } = content;
   const serviceOptions = [
     ...tiers.map((id) => services.tiers[id].name),
     contact.fields.service.other,
@@ -16,7 +15,13 @@ export default function Contact({ dictionary }: { dictionary: Dictionary }) {
       <SectionHeader id="contact" eyebrow={contact.eyebrow} title={contact.title} lead={contact.lead} />
       <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
         <div className={`${card} border-line p-6 md:p-8 lg:col-span-8`}>
-          <ContactForm copy={contact} serviceOptions={serviceOptions} email={contactLinks.email} />
+          <ContactForm
+            copy={contact}
+            serviceOptions={serviceOptions}
+            email={contactLinks.email}
+            bookingUrl={contactLinks.calendly}
+            bookingLabel={content.cta.book}
+          />
         </div>
         <div className="space-y-6 lg:col-span-4">
           <div>
@@ -26,8 +31,8 @@ export default function Contact({ dictionary }: { dictionary: Dictionary }) {
                 {contactLinks.email}
               </a>
             </p>
-            <p className="mt-2 text-muted">{contact.replyTime}</p>
           </div>
+          <p className="font-mono text-label text-muted">{hero.trust}</p>
           <p>
             <a href={contactLinks.linkedin} className={textLink}>
               LinkedIn

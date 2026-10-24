@@ -1,19 +1,16 @@
 'use client';
 
+import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
-import LanguageToggle from '@/components/LanguageToggle';
+import BookingLink from '@/components/BookingLink';
 import { buttonPrimary, pageContainer } from '@/components/ui/styles';
-import { localePath, type Dictionary, type Locale, type SectionId } from '@/content/types';
+import { content, type SectionId } from '@/content';
 
-const navSections: SectionId[] = ['services', 'work', 'about', 'contact'];
+// As in the v2 wireframes: the contact form is reached through the CTAs.
+const navSections: SectionId[] = ['services', 'process', 'work', 'about'];
 
-type Props = {
-  locale: Locale;
-  dictionary: Dictionary;
-};
-
-export default function Header({ locale, dictionary }: Props) {
-  const { nav, language } = dictionary;
+export default function Header() {
+  const { nav } = content;
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const menuButton = useRef<HTMLButtonElement>(null);
@@ -45,9 +42,9 @@ export default function Header({ locale, dictionary }: Props) {
       }`}
     >
       <div className={`${pageContainer} flex h-16 items-center justify-between gap-6`}>
-        <a href={localePath[locale]} className="font-semibold tracking-tight whitespace-nowrap">
+        <Link href="/" className="font-semibold tracking-tight whitespace-nowrap">
           Gelum Digital
-        </a>
+        </Link>
 
         <nav aria-label={nav.label} className="hidden md:block">
           <ul className="flex gap-8 text-sm">
@@ -65,11 +62,8 @@ export default function Header({ locale, dictionary }: Props) {
         </nav>
 
         <div className="flex items-center gap-5">
-          <LanguageToggle current={locale} label={language.label} />
           {/* max-md:hidden, not hidden: a variant beats the button's own inline-flex. */}
-          <a href="#contact" className={`${buttonPrimary} max-md:hidden`}>
-            {nav.cta}
-          </a>
+          <BookingLink variant="short" className={`${buttonPrimary} max-md:hidden`} />
           <button
             ref={menuButton}
             type="button"
@@ -94,9 +88,7 @@ export default function Header({ locale, dictionary }: Props) {
               </li>
             ))}
           </ul>
-          <a href="#contact" onClick={closeMenu} className={`${buttonPrimary} mt-6 w-full`}>
-            {nav.cta}
-          </a>
+          <BookingLink variant="short" onClick={closeMenu} className={`${buttonPrimary} mt-6 w-full`} />
         </nav>
       </div>
     </header>

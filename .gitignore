@@ -50,3 +50,6 @@ leads_crm.xlsx
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+# outreach templates (private, never commit)
+/Plantillas de outreach*

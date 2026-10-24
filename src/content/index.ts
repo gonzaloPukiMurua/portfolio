@@ -1,38 +1,37 @@
-import { en } from './en';
-import { es } from './es';
-import type { Dictionary, Locale, TierId } from './types';
+import type { TierId } from './site';
+
+export { content, type SectionId, type TeamMember, type TierId } from './site';
 
 export const siteUrl = 'https://www.gelumdigital.online';
 
-export const dictionaries: Record<Locale, Dictionary> = { en, es };
-
 export const contactLinks = {
-  email: 'gonzaloemurua96@gmail.com',
+  email: 'hello@gelumdigital.online',
   linkedin: 'https://www.linkedin.com/in/gonzalo-enzo-murua-34a363228/',
   github: 'https://github.com/gonzaloPukiMurua',
+  /** The owner's 15-minute booking page. While null, booking CTAs fall back to the contact form. */
+  calendly: 'https://calendly.com/hello-gelumdigital/30min' as string | null,
 };
 
 export const formspreeEndpoint = 'https://formspree.io/f/xeepveea';
 
 // Ordered by price.
-export const tiers: TierId[] = ['website', 'redesign', 'cms', 'custom'];
+export const tiers: TierId[] = ['landing', 'website', 'redesign'];
 
-/** Highlighted as "most popular"; null until the owner picks one. */
-export const popularTier: TierId | null = null;
-
-/** Base prices in USD, set by the owner on 2026-09-29. */
+/** Base prices in AUD (audit, adopted by the owner on 2026-10-20). Hypotheses until the commercial strategy is closed. */
 export const basePrices: Record<TierId, number> = {
-  website: 800,
-  redesign: 2000,
-  cms: 2500,
-  custom: 4000,
+  landing: 1800,
+  website: 3500,
+  redesign: 3500,
 };
 
-const priceFormats: Record<Locale, Intl.NumberFormat> = {
-  en: new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }),
-  es: new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }),
-};
+const priceFormat = new Intl.NumberFormat('en-AU', {
+  style: 'currency',
+  currency: 'AUD',
+  currencyDisplay: 'code',
+  maximumFractionDigits: 0,
+});
 
-export function formatPrice(amount: number, locale: Locale) {
-  return priceFormats[locale].format(amount);
+/** "AUD 1,800" */
+export function formatPrice(amount: number) {
+  return priceFormat.format(amount).replace(/\s/g, ' ');
 }

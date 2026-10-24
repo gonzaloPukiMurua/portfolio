@@ -6,16 +6,10 @@ import {
   pageContainer,
   sectionSpacing,
 } from '@/components/ui/styles';
-import { basePrices, formatPrice, popularTier, tiers } from '@/content';
-import type { Dictionary, Locale } from '@/content/types';
+import { basePrices, content, formatPrice, tiers } from '@/content';
 
-type Props = {
-  locale: Locale;
-  dictionary: Dictionary;
-};
-
-export default function Services({ locale, dictionary }: Props) {
-  const { services } = dictionary;
+export default function Services() {
+  const { services, cta } = content;
 
   return (
     <section
@@ -30,25 +24,18 @@ export default function Services({ locale, dictionary }: Props) {
         title={services.title}
         lead={services.lead}
       />
-      {/* 4 packages: 2×2 from tablet, one row only from xl, where the cards are wide enough. */}
-      <ul className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+      {/* 3 columns only from lg: at tablet width the cards get too narrow. */}
+      <ul className="grid gap-6 lg:grid-cols-3">
         {tiers.map((id) => {
           const tier = services.tiers[id];
-          const popular = id === popularTier;
           return (
-            <li
-              key={id}
-              className={`${card} flex flex-col p-6 md:p-8 xl:p-6 ${popular ? 'border-accent' : 'border-line'}`}
-            >
-              <div className="flex items-baseline justify-between gap-4">
-                <h3 className="text-card font-semibold">{tier.name}</h3>
-                {popular && <p className={`${monoLabel} text-accent`}>{services.popular}</p>}
-              </div>
+            <li key={id} className={`${card} flex flex-col border-line p-6 md:p-8`}>
+              <h3 className="text-card font-semibold">{tier.name}</h3>
               {/* "from" on its own line: inline, it wraps differently per card and breaks alignment. */}
               <p className="mt-4 flex flex-col">
                 <span className="text-muted">{services.from}</span>
                 <span className="text-4xl font-semibold tracking-tight">
-                  {formatPrice(basePrices[id], locale)}
+                  {formatPrice(basePrices[id])}
                 </span>
               </p>
               <p className={`${monoLabel} mt-2 text-muted`}>{tier.duration}</p>
@@ -63,13 +50,14 @@ export default function Services({ locale, dictionary }: Props) {
                 ))}
               </ul>
               <a href="#contact" className={`${buttonSecondary} mt-8`}>
-                {services.cta}
+                {cta.quote}
                 <span className="sr-only">: {tier.name}</span>
               </a>
             </li>
           );
         })}
       </ul>
+      <p className="mt-6 text-sm text-muted">{services.note}</p>
     </section>
   );
 }
