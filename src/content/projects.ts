@@ -19,11 +19,11 @@ export const projects: Project[] = [
     name: 'Sparkline Electrical',
     category: 'Residential electrician',
     description:
-      'Lead-focused site for a local electrician: upfront pricing, service areas and a fast quote request.',
-    stack: ['HTML', 'CSS', 'JavaScript'],
-    demoUrl: 'https://tjelectrical.gelumdigital.online/',
+      'Call-first site for a Brisbane northside electrician: one-tap call, a fixed call-out price, the suburbs covered and a four-field request form.',
+    stack: ['Next.js', 'TypeScript', 'Tailwind CSS'],
+    demoUrl: 'https://sparkline.gelumdigital.online/',
     image: { src: '/work/sparkline-electrical.webp', width: 1280, height: 800 },
-    lighthouse: { performance: 89, accessibility: 89, measured: '2026-10-20' },
+    lighthouse: { performance: 99, accessibility: 100, measured: '2026-10-27' },
   },
   {
     slug: 'voltline-electrical',
