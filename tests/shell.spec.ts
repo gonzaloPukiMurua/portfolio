@@ -15,10 +15,14 @@ test('home has no horizontal scroll at 360px', async ({ page }) => {
   expect(overflow).toBe(0);
 });
 
-test('the Spanish version is gone from the build', async ({ page }) => {
-  // In production `.htaccess` redirects /es/ to /; the static build simply has no page there.
-  const response = await page.goto('/es/');
-  expect(response?.status()).toBe(404);
+test('the Spanish version is gone from the build', async ({ request }) => {
+  // The static build has no page there (404); in production `.htaccess` redirects /es/ to / (301).
+  const response = await request.get('/es/', { maxRedirects: 0 });
+  if (response.status() === 301) {
+    expect(new URL(response.headers()['location'], response.url()).pathname).toBe('/');
+  } else {
+    expect(response.status()).toBe(404);
+  }
 });
 
 test('mobile menu opens, closes with Escape and closes on link click', async ({ page }) => {
