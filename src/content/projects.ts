@@ -28,12 +28,12 @@ export const projects: Project[] = [
   {
     slug: 'voltline-electrical',
     name: 'Voltline Electrical & Refrigeration',
-    category: 'Commercial and rural electrical',
+    category: 'Commercial electrical and refrigeration',
     description:
-      'Service site for homes, businesses and rural properties, organised around clear service lines.',
-    stack: ['HTML', 'CSS', 'JavaScript'],
-    demoUrl: 'https://ballaratelectric.gelumdigital.online/',
+      'Six-page site for a fictional Ballarat contractor serving farms and businesses: published travel costs, starting prices and a guided quote form.',
+    stack: ['Next.js', 'TypeScript', 'Tailwind CSS'],
+    demoUrl: 'https://voltline.gelumdigital.online/',
     image: { src: '/work/voltline-electrical.webp', width: 1280, height: 800 },
-    lighthouse: { performance: 90, accessibility: 90, measured: '2026-10-20' },
+    lighthouse: { performance: 98, accessibility: 100, measured: '2026-11-01' },
   },
 ];
