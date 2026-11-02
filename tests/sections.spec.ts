@@ -233,7 +233,7 @@ test.describe('how we work', () => {
 
   test('FAQ answers open and close', async ({ page }) => {
     await page.goto('/');
-    const item = page.locator('#process details').first();
+    const item = page.locator('#process details').filter({ hasText: 'How many rounds of changes' });
     const answer = item.locator('p');
     await expect(answer).toBeHidden();
     await item.locator('summary').click();
@@ -247,10 +247,33 @@ test.describe('how we work', () => {
     const context = await browser.newContext({ javaScriptEnabled: false });
     const page = await context.newPage();
     await page.goto('/');
-    const item = page.locator('#process details').nth(4);
+    const item = page.locator('#process details').filter({ hasText: 'How do I pay?' });
     await item.locator('summary').click();
     await expect(item.locator('p')).toContainText('50% deposit to start and 50% at launch');
     await context.close();
+  });
+});
+
+test.describe('founding-client offer', () => {
+  test('is shown under the prices and leads the FAQ while open', async ({ page }) => {
+    await page.clock.setFixedTime(new Date('2026-11-15T10:00:00+11:00'));
+    await page.goto('/');
+    const note = page.locator('#services [data-founding-offer]');
+    await expect(note).toBeVisible();
+    await expect(note).toContainText('30% off any plan');
+    await expect(note).toContainText('Until 31 December 2026 · 3 of 3 places open.');
+    const first = page.locator('#process details').first();
+    await expect(first.locator('summary')).toHaveText(/Have you built sites for real clients\?/);
+  });
+
+  test('disappears after its end date (Sydney time) without a redeploy', async ({ page }) => {
+    await page.clock.setFixedTime(new Date('2027-01-01T00:00:01+11:00'));
+    await page.goto('/');
+    await expect(page.locator('[data-founding-offer]').first()).toBeAttached();
+    for (const element of await page.locator('[data-founding-offer]').all()) {
+      await expect(element).toBeHidden();
+    }
+    await expect(page.locator('#process details').filter({ hasText: 'How many rounds' })).toBeVisible();
   });
 });
 

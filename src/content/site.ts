@@ -54,6 +54,12 @@ export const content = {
     lead: 'Every project starts with a free 15-minute call and a fixed quote within 48 hours.',
     from: 'from',
     note: 'Prices in AUD. Final quote depends on scope. The first year of domain and hosting is included.',
+    // {discount}, {ends}, {open} and {places} come from `foundingOffer` (content/index.ts).
+    founding: {
+      title: 'Founding clients.',
+      body: 'Our first three projects get {discount}% off any plan, in exchange for a testimonial and permission to publish the work as a case study.',
+      status: 'Until {ends} · {open} of {places} places open.',
+    },
     tiers: {
       landing: {
         name: 'Landing Page',
@@ -138,6 +144,12 @@ export const content = {
           'In Argentina. We are available 9am–12pm Sydney time, so calls and replies happen during your business day.',
       },
     ],
+    // Shown first in the FAQ only while the founding-client offer is open.
+    foundingFaq: {
+      question: 'Have you built sites for real clients?',
+      answer:
+        'Not under the Gelum name yet: the projects on this page are concept sites, built to show how we work. That’s why, until {ends}, our first three clients get {discount}% off any plan, in exchange for a testimonial and permission to publish their site as a case study.',
+    },
   },
   work: {
     eyebrow: 'Work',

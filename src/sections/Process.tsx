@@ -1,9 +1,17 @@
 import SectionHeader from '@/components/ui/SectionHeader';
 import { card, monoLabel, pageContainer, sectionSpacing } from '@/components/ui/styles';
-import { content } from '@/content';
+import { content, foundingOfferOpen, foundingText } from '@/content';
 
 export default function Process() {
   const { process } = content;
+  // The founding-offer question leads the FAQ while the offer is open; the
+  // layout script hides it (data-founding-offer) once the end date passes.
+  const faq = [
+    ...(foundingOfferOpen
+      ? [{ ...process.foundingFaq, answer: foundingText(process.foundingFaq.answer), founding: true }]
+      : []),
+    ...process.faq.map((item) => ({ ...item, founding: false })),
+  ];
 
   return (
     <section
@@ -32,8 +40,8 @@ export default function Process() {
       <h3 className="mt-12 text-card font-semibold">{process.faqTitle}</h3>
       {/* Native <details>: works without JavaScript and with the keyboard. */}
       <div className={`${card} mt-6 divide-y divide-line border-line`}>
-        {process.faq.map((item) => (
-          <details key={item.question} className="group">
+        {faq.map((item) => (
+          <details key={item.question} className="group" data-founding-offer={item.founding || undefined}>
             <summary className="flex cursor-pointer list-none items-center justify-between gap-6 px-6 py-4 font-medium [&::-webkit-details-marker]:hidden">
               {item.question}
               <span

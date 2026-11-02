@@ -93,3 +93,13 @@
     transform: translateY(12px);
   }
 }
+
+/* Founding-client offer past its end date (see offerEndScript in layout.tsx). */
+.offer-ended [data-founding-offer] {
+  display: none;
+}
+
+/* The hidden first FAQ item would leave the next one's divider at the card's top edge. */
+.offer-ended [data-founding-offer] + * {
+  border-top-width: 0;
+}
