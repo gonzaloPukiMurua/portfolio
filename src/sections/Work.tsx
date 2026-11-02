@@ -55,6 +55,37 @@ function ProjectCard({ project, featured }: { project: Project; featured: boolea
         </p>
         <h3 className="mt-3 text-card font-semibold">{project.name}</h3>
         <p className="mt-3 text-muted">{project.description}</p>
+        {/* Case study: the problem we measured, what we decided, what it achieved. */}
+        <dl className="mt-6 space-y-4 border-t border-line pt-5 text-sm">
+          <div>
+            <dt className={`${monoLabel} text-muted`}>{work.caseStudy.problem}</dt>
+            <dd className="mt-1">{project.problem}</dd>
+          </div>
+          <div>
+            <dt className={`${monoLabel} text-muted`}>{work.caseStudy.decisions}</dt>
+            <dd className="mt-1">
+              <ul className="list-disc space-y-1 pl-5 marker:text-accent">
+                {project.decisions.map((decision) => (
+                  <li key={decision}>{decision}</li>
+                ))}
+              </ul>
+            </dd>
+          </div>
+          <div>
+            <dt className={`${monoLabel} text-muted`}>{work.caseStudy.result}</dt>
+            <dd className="mt-1">{project.result}</dd>
+            {lighthouse && (
+              <dd className="mt-1 font-mono text-label text-muted">
+                {work.score}: {lighthouse.performance} {work.performance} · {lighthouse.accessibility}{' '}
+                {work.accessibility} · {work.measured}{' '}
+                <time dateTime={lighthouse.measured}>
+                  {measuredDate.format(new Date(lighthouse.measured))}
+                </time>
+              </dd>
+            )}
+          </div>
+        </dl>
+        <p className="mt-5 text-sm text-muted">{project.credits}</p>
         <ul className="mt-5 flex flex-wrap gap-2">
           {project.stack.map((item) => (
             <li
@@ -65,15 +96,6 @@ function ProjectCard({ project, featured }: { project: Project; featured: boolea
             </li>
           ))}
         </ul>
-        {lighthouse && (
-          <p className="mt-4 font-mono text-label text-muted">
-            {work.score}: {lighthouse.performance} {work.performance} · {lighthouse.accessibility}{' '}
-            {work.accessibility} · {work.measured}{' '}
-            <time dateTime={lighthouse.measured}>
-              {measuredDate.format(new Date(lighthouse.measured))}
-            </time>
-          </p>
-        )}
         <p className="mt-auto pt-6">
           <a href={project.demoUrl} target="_blank" rel="noopener noreferrer" className={textLink}>
             {work.demoLink}

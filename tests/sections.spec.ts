@@ -96,6 +96,10 @@ test.describe('work', () => {
     for (const card of await cards.all()) {
       await expect(card).toContainText('Concept');
       await expect(card.locator('time')).toHaveAttribute('datetime', /^\d{4}-\d{2}-\d{2}$/);
+      // Each card reads as a case study: problem, decisions, result, credits.
+      await expect(card.locator('dt')).toHaveText(['Problem', 'Decisions', 'Result']);
+      await expect(card.locator('dd ul li')).toHaveCount(3);
+      await expect(card).toContainText('Luisa Ferrari Romero');
     }
     // An even count: no featured card, both share one row.
     const [first, second] = await Promise.all([cards.nth(0).boundingBox(), cards.nth(1).boundingBox()]);

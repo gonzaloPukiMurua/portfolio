@@ -146,6 +146,7 @@ export const content = {
     concept: 'Concept',
     demoLink: 'View live demo',
     screenshotAlt: 'Home page of the {name} concept site',
+    caseStudy: { problem: 'Problem', decisions: 'Decisions', result: 'Result' },
     score: 'Lighthouse mobile',
     performance: 'performance',
     accessibility: 'accessibility',
