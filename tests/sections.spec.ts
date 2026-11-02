@@ -120,6 +120,10 @@ test.describe('work', () => {
 });
 
 test.describe('contact form', () => {
+  // Smooth scrolling and the section's reveal keep the button moving while the
+  // test clicks it; on mobile WebKit about 1 click in 40 then missed the button.
+  test.use({ contextOptions: { reducedMotion: 'reduce' } });
+
   test('empty submit shows every error and focuses the first field', async ({ page }) => {
     let requests = 0;
     await page.route(formspree, (route) => {

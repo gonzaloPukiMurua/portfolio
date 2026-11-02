@@ -9,10 +9,10 @@ export default defineConfig({
   testDir: 'tests',
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
-  // More parallel browsers starve this machine: assertions time out and Firefox crashes on teardown.
+  // With 6 workers Firefox crashed on teardown on this machine.
   workers: 3,
   reporter: 'list',
-  // Headroom for slow runs; the default 5s was hit under load without any real failure.
+  // Headroom for slow runs.
   expect: { timeout: 10_000 },
   use: {
     baseURL: baseURL ?? `http://localhost:${port}`,
