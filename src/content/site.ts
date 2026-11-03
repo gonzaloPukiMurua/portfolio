@@ -238,6 +238,8 @@ export const content = {
       message: { label: 'Project details', error: 'Please tell us a bit about your project.' },
     },
     submit: 'Send message',
+    privacyNotice: 'We’ll only use your details to reply to your enquiry. See our',
+    privacyLink: 'Privacy Policy',
     submitting: 'Sending…',
     success: {
       title: 'Thanks, your message is in.',

@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { buttonPrimary, textLink } from '@/components/ui/styles';
 import { formspreeEndpoint, type content } from '@/content';
@@ -219,6 +220,13 @@ export default function ContactForm({ copy, serviceOptions, email, bookingUrl, b
       >
         {status === 'submitting' ? copy.submitting : copy.submit}
       </button>
+      <p className="text-sm text-muted">
+        {copy.privacyNotice}{' '}
+        <Link href="/privacy/" prefetch={false} className={textLink}>
+          {copy.privacyLink}
+        </Link>
+        .
+      </p>
     </form>
   );
 }
