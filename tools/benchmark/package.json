@@ -1,0 +1,12 @@
+{
+  "name": "gelum-benchmark",
+  "private": true,
+  "type": "module",
+  "description": "Measures sites with Lighthouse for the figures published on the Gelum site. Not part of the production build.",
+  "scripts": {
+    "start": "node run.mjs"
+  },
+  "devDependencies": {
+    "lighthouse": "12.8.2"
+  }
+}

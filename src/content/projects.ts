@@ -1,3 +1,5 @@
+import benchmark from '../../tools/benchmark/results.json';
+
 export type Project = {
   slug: string;
   name: string;
@@ -9,8 +11,8 @@ export type Project = {
    */
   problem: string;
   decisions: string[];
-  /** What the visitor gets; the measured scores follow it on the card. */
-  result: string;
+  /** Median Largest Contentful Paint, in seconds, from tools/benchmark. */
+  loadSeconds: number;
   credits: string;
   stack: string[];
   demoUrl: string;
@@ -20,8 +22,26 @@ export type Project = {
    * name (-v2, -v3…) instead of overwriting the old one.
    */
   image: { src: string; width: number; height: number };
-  /** Lighthouse mobile scores as measured on `measured` (YYYY-MM-DD); null hides them. */
+  /** Median Lighthouse mobile scores, measured on `measured` (YYYY-MM-DD); null hides them. */
   lighthouse: { performance: number; accessibility: number; measured: string } | null;
+};
+
+/** The published figures come from tools/benchmark/results.json; see METHOD.md there. */
+function measuredDemo(name: string) {
+  const demo = benchmark.demos.find((item) => item.name === name)!;
+  return {
+    loadSeconds: demo.lcpSeconds,
+    lighthouse: { performance: demo.performance, accessibility: demo.accessibility, measured: benchmark.date },
+  };
+}
+
+/** Aggregate and anonymous: the sites measured are never named. */
+export const comparison = {
+  sites: benchmark.comparison.sites,
+  medianSeconds: benchmark.comparison.medianLcpSeconds,
+  demoSeconds: benchmark.demos.map((demo) => demo.lcpSeconds),
+  date: benchmark.date,
+  version: benchmark.lighthouseVersion,
 };
 
 const credits = 'Development: Gonzalo Murua · Design review and QA: Luisa Ferrari Romero';
@@ -35,18 +55,17 @@ export const projects: Project[] = [
     category: 'Residential electrician',
     description:
       'Call-first site for a Brisbane northside electrician: one-tap call, a fixed call-out price, the suburbs covered and a four-field request form.',
-    problem: 'Three local electrician sites we measured took 8–18 s to load on a phone; two showed no prices.',
+    problem: 'Of three Brisbane electrician sites we reviewed, two showed no prices.',
     decisions: [
       'Call button in the first screen and a sticky call bar on mobile',
       'A fixed call-out fee and three starting prices',
       'A four-field request form',
     ],
-    result: 'Loads in about 2 s on mobile.',
     credits,
     stack: ['Next.js', 'TypeScript', 'Tailwind CSS'],
     demoUrl: 'https://sparkline.gelumdigital.online/',
     image: { src: '/work/sparkline-electrical-v2.webp', width: 1280, height: 800 },
-    lighthouse: { performance: 99, accessibility: 100, measured: '2026-10-27' },
+    ...measuredDemo('Sparkline Electrical'),
   },
   {
     slug: 'voltline-electrical',
@@ -54,18 +73,16 @@ export const projects: Project[] = [
     category: 'Commercial electrical and refrigeration',
     description:
       'Six-page site for a fictional Ballarat contractor serving farms and businesses: published travel costs, starting prices and a guided quote form.',
-    problem:
-      'Of five Ballarat contractor sites we measured, none showed prices or travel costs, and four took 8–34 s to load on a phone.',
+    problem: 'Of five Ballarat contractor sites we reviewed, none showed prices or travel costs.',
     decisions: [
       'Travel costs published by distance',
       'A guided quote form that asks what’s needed to price the job',
       'Six pages, matching our Small Business Website plan',
     ],
-    result: 'Loads in about 2 s on mobile.',
     credits,
     stack: ['Next.js', 'TypeScript', 'Tailwind CSS'],
     demoUrl: 'https://voltline.gelumdigital.online/',
     image: { src: '/work/voltline-electrical-v2.webp', width: 1280, height: 800 },
-    lighthouse: { performance: 98, accessibility: 100, measured: '2026-11-01' },
+    ...measuredDemo('Voltline Electrical & Refrigeration'),
   },
 ];

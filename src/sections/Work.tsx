@@ -2,7 +2,7 @@ import Image from 'next/image';
 import SectionHeader from '@/components/ui/SectionHeader';
 import { card, monoLabel, pageContainer, sectionSpacing, textLink } from '@/components/ui/styles';
 import { content } from '@/content';
-import { projects, type Project } from '@/content/projects';
+import { comparison, projects, type Project } from '@/content/projects';
 
 const measuredDate = new Intl.DateTimeFormat('en-AU', {
   day: 'numeric',
@@ -24,6 +24,14 @@ export default function Work() {
           <ProjectCard key={project.slug} project={project} featured={featureFirst && index === 0} />
         ))}
       </ul>
+      <p className="mt-6 max-w-3xl text-sm text-muted">
+        {work.comparison
+          .replace('{sites}', String(comparison.sites))
+          .replace('{date}', measuredDate.format(new Date(comparison.date)))
+          .replace('{median}', String(comparison.medianSeconds))
+          .replace('{demos}', comparison.demoSeconds.join(' s and '))
+          .replace('{version}', comparison.version)}
+      </p>
     </section>
   );
 }
@@ -73,7 +81,7 @@ function ProjectCard({ project, featured }: { project: Project; featured: boolea
           </div>
           <div>
             <dt className={`${monoLabel} text-muted`}>{work.caseStudy.result}</dt>
-            <dd className="mt-1">{project.result}</dd>
+            <dd className="mt-1">{work.load.replace('{seconds}', String(project.loadSeconds))}</dd>
             {lighthouse && (
               <dd className="mt-1 font-mono text-label text-muted">
                 {work.score}: {lighthouse.performance} {work.performance} · {lighthouse.accessibility}{' '}

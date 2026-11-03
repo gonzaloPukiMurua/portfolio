@@ -101,6 +101,8 @@ test.describe('work', () => {
       await expect(card.locator('dd ul li')).toHaveCount(3);
       await expect(card).toContainText('Luisa Ferrari Romero');
     }
+    // Published figures state their method.
+    await expect(page.locator('#work')).toContainText('median of 3 runs per site');
     // An even count: no featured card, both share one row.
     const [first, second] = await Promise.all([cards.nth(0).boundingBox(), cards.nth(1).boundingBox()]);
     expect(Math.abs(first!.width - second!.width)).toBeLessThan(2);

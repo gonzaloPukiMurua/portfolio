@@ -41,7 +41,7 @@ yarn-error.log*
 next-env.d.ts
 
 # lead tracking (private, never commit)
-leads_crm.xlsx
+leads_crm*.xlsx
 # Office lock files
 ~$*
 
@@ -53,3 +53,7 @@ leads_crm.xlsx
 
 # outreach templates (private, never commit)
 /Plantillas de outreach*
+
+# benchmark: real sites are never committed; only aggregate results are
+/tools/benchmark/node_modules/
+/tools/benchmark/*.private.*

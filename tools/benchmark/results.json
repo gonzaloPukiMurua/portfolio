@@ -1,0 +1,38 @@
+{
+  "date": "2026-11-03",
+  "runsPerSite": 3,
+  "lighthouseVersion": "12.8.2",
+  "formFactor": "mobile",
+  "throttlingMethod": "simulate",
+  "throttling": {
+    "rttMs": 150,
+    "throughputKbps": 1638.4,
+    "requestLatencyMs": 562.5,
+    "downloadThroughputKbps": 1474.5600000000002,
+    "uploadThroughputKbps": 675,
+    "cpuSlowdownMultiplier": 4
+  },
+  "demos": [
+    {
+      "name": "Sparkline Electrical",
+      "url": "https://sparkline.gelumdigital.online/",
+      "performance": 95,
+      "accessibility": 100,
+      "lcpSeconds": 2.6,
+      "failures": 0
+    },
+    {
+      "name": "Voltline Electrical & Refrigeration",
+      "url": "https://voltline.gelumdigital.online/",
+      "performance": 96,
+      "accessibility": 100,
+      "lcpSeconds": 2.4,
+      "failures": 0
+    }
+  ],
+  "comparison": {
+    "sites": 8,
+    "sitesThatFailed": 0,
+    "medianLcpSeconds": 16.1
+  }
+}

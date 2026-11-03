@@ -163,7 +163,10 @@ export const content = {
     demoLink: 'View demo',
     screenshotAlt: 'Home page of the {name} concept site',
     caseStudy: { problem: 'Problem', decisions: 'Decisions', result: 'Result' },
-    score: 'Lighthouse mobile',
+    load: 'Main content loads in {seconds} s on mobile.',
+    comparison:
+      'In our test of {sites} Australian trade websites on {date}, the median mobile load time was {median} s, against {demos} s for our two demos. A small sample, measured the same way: Lighthouse {version}, mobile, median of 3 runs per site, Largest Contentful Paint.',
+    score: 'Lighthouse mobile, median of 3 runs',
     performance: 'performance',
     accessibility: 'accessibility',
     measured: 'measured',
