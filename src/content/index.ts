@@ -9,7 +9,7 @@ export const contactLinks = {
   linkedin: 'https://www.linkedin.com/in/gonzalo-enzo-murua-34a363228/',
   github: 'https://github.com/gonzaloPukiMurua',
   /** The owner's 15-minute booking page. While null, booking CTAs fall back to the contact form. */
-  calendly: 'https://calendly.com/hello-gelumdigital/30min' as string | null,
+  calendly: 'https://calendly.com/hello-gelumdigital/15-minutes-meeting' as string | null,
 };
 
 export const formspreeEndpoint = 'https://formspree.io/f/xeepveea';

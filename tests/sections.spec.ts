@@ -54,7 +54,7 @@ test.describe('hero', () => {
 test('the hero booking CTA opens Calendly in a new tab', async ({ page }) => {
   await page.goto('/');
   const cta = page.locator('section[aria-labelledby="hero-title"]').getByRole('link', { name: /Book a free 15-min call/ });
-  await expect(cta).toHaveAttribute('href', 'https://calendly.com/hello-gelumdigital/30min');
+  await expect(cta).toHaveAttribute('href', 'https://calendly.com/hello-gelumdigital/15-minutes-meeting');
   await expect(cta).toHaveAttribute('target', '_blank');
   await expect(cta).toHaveAccessibleName(/opens in a new tab/);
 });
@@ -176,7 +176,7 @@ test.describe('contact form', () => {
     expect(body).toMatch(/name="budget"\r\n\r\n\r\n/);
     // The success state offers the Calendly booking page in a new tab.
     const book = page.locator('#contact').getByRole('link', { name: /Book a free 15-min call/ });
-    await expect(book).toHaveAttribute('href', 'https://calendly.com/hello-gelumdigital/30min');
+    await expect(book).toHaveAttribute('href', 'https://calendly.com/hello-gelumdigital/15-minutes-meeting');
     await expect(book).toHaveAttribute('target', '_blank');
   });
 
