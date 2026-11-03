@@ -249,5 +249,6 @@ export const content = {
   },
   footer: {
     rights: 'All rights reserved.',
+    privacy: 'Privacy Policy',
   },
 };

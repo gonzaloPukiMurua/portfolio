@@ -51,7 +51,7 @@ export default function Header() {
             {navSections.map((id) => (
               <li key={id}>
                 <a
-                  href={`#${id}`}
+                  href={`/#${id}`}
                   className="text-muted transition-colors duration-150 hover:text-ink"
                 >
                   {nav.sections[id]}
@@ -82,7 +82,7 @@ export default function Header() {
           <ul className="flex flex-col gap-1 text-lead">
             {navSections.map((id) => (
               <li key={id}>
-                <a href={`#${id}`} onClick={closeMenu} className="block py-2">
+                <a href={`/#${id}`} onClick={closeMenu} className="block py-2">
                   {nav.sections[id]}
                 </a>
               </li>

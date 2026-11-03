@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { pageContainer } from '@/components/ui/styles';
 import { content, contactLinks } from '@/content';
 
@@ -13,6 +14,9 @@ export default function Footer() {
           © {new Date().getFullYear()} Gelum Digital. {content.footer.rights}
         </p>
         <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+          <Link href="/privacy/" prefetch={false} className={footerLink}>
+            {content.footer.privacy}
+          </Link>
           <a href={`mailto:${contactLinks.email}`} className={footerLink}>
             Email
           </a>
