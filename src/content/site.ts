@@ -1,6 +1,10 @@
 // Site copy. English only since v2 (Australian trades). Copy approved by the
 // owner on 2026-10-20 (adjustable); every promise here must stay true.
 
+// OWNER-CONFIRM: the wording about GST is for the owner and their accountant to decide;
+// until then this makes no claim about tax.
+export const priceNote = 'Prices in AUD.';
+
 export type SectionId = 'services' | 'process' | 'work' | 'about' | 'contact';
 
 export type TeamMember = {
@@ -53,7 +57,7 @@ export const content = {
     title: 'Three ways to start.',
     lead: 'Every project starts with a free 15-minute call and a fixed quote within 48 hours.',
     from: 'from',
-    note: 'Prices in AUD. Final quote depends on scope. The first year of domain and hosting is included.',
+    note: 'Final quote depends on scope. The first year of domain and hosting is included.',
     // {discount}, {ends}, {open} and {places} come from `foundingOffer` (content/index.ts).
     founding: {
       title: 'Founding clients.',
@@ -136,7 +140,7 @@ export const content = {
       },
       {
         question: 'How do I pay?',
-        answer: '50% deposit to start and 50% at launch, in AUD, by PayPal, Payoneer or Prex.',
+        answer: `50% deposit to start and 50% at launch, by PayPal, Payoneer or Prex. ${priceNote}`,
       },
       {
         question: 'Where are you based?',
@@ -154,9 +158,9 @@ export const content = {
   work: {
     eyebrow: 'Work',
     title: 'Concept projects',
-    lead: 'Sample sites for fictional Australian trades businesses, built to show how we approach a project. The businesses are made up; the sites are live.',
-    concept: 'Concept',
-    demoLink: 'View live demo',
+    lead: 'Sample sites for fictional Australian trades businesses, built to show how we approach a project. The businesses are made up; you can open each site and try it.',
+    concept: 'Concept project for a fictional business',
+    demoLink: 'View demo',
     screenshotAlt: 'Home page of the {name} concept site',
     caseStudy: { problem: 'Problem', decisions: 'Decisions', result: 'Result' },
     score: 'Lighthouse mobile',

@@ -1,6 +1,6 @@
 import type { TierId } from './site';
 
-export { content, type SectionId, type TeamMember, type TierId } from './site';
+export { content, priceNote, type SectionId, type TeamMember, type TierId } from './site';
 
 export const siteUrl = 'https://www.gelumdigital.online';
 

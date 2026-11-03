@@ -94,7 +94,7 @@ test.describe('work', () => {
     const cards = page.locator('#work > ul > li');
     await expect(cards).toHaveCount(2);
     for (const card of await cards.all()) {
-      await expect(card).toContainText('Concept');
+      await expect(card).toContainText('Concept project for a fictional business');
       await expect(card.locator('time')).toHaveAttribute('datetime', /^\d{4}-\d{2}-\d{2}$/);
       // Each card reads as a case study: problem, decisions, result, credits.
       await expect(card.locator('dt')).toHaveText(['Problem', 'Decisions', 'Result']);
@@ -109,7 +109,7 @@ test.describe('work', () => {
 
   test('demo links open a new tab and say so', async ({ page }) => {
     await page.goto('/');
-    const links = page.locator('#work').getByRole('link', { name: /View live demo/ });
+    const links = page.locator('#work').getByRole('link', { name: /View demo/ });
     await expect(links).toHaveCount(2);
     for (const link of await links.all()) {
       await expect(link).toHaveAttribute('target', '_blank');

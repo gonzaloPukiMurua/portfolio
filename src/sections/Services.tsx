@@ -6,7 +6,7 @@ import {
   pageContainer,
   sectionSpacing,
 } from '@/components/ui/styles';
-import { basePrices, content, formatPrice, foundingOfferOpen, foundingText, tiers } from '@/content';
+import { basePrices, content, formatPrice, foundingOfferOpen, foundingText, priceNote, tiers } from '@/content';
 
 export default function Services() {
   const { services, cta } = content;
@@ -33,7 +33,7 @@ export default function Services() {
               <h3 className="text-card font-semibold">{tier.name}</h3>
               {/* "from" on its own line: inline, it wraps differently per card and breaks alignment. */}
               <p className="mt-4 flex flex-col">
-                <span className="text-muted">{services.from}</span>
+                <span className="text-muted">{services.from}</span>{' '}
                 <span className="text-4xl font-semibold tracking-tight">
                   {formatPrice(basePrices[id])}
                 </span>
@@ -57,7 +57,9 @@ export default function Services() {
           );
         })}
       </ul>
-      <p className="mt-6 text-sm text-muted">{services.note}</p>
+      <p className="mt-6 text-sm text-muted">
+        {priceNote} {services.note}
+      </p>
       {foundingOfferOpen && (
         // data-founding-offer: hidden by the layout script once the offer's end date has passed.
         <p data-founding-offer className="mt-4 border-l-2 border-accent pl-4">
