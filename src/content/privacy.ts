@@ -2,10 +2,10 @@
 // 2026-11-02: Formspree, Hostinger, a Calendly link, self-hosted fonts, no
 // cookies, no analytics). It is a template, not legal advice: a professional
 // review is recommended. If a provider changes in the code, update this too.
-// OWNER-CONFIRM: who has access to the inbox and accounts (Security), and how
-// long project and payment records are kept (How long we keep it).
+// OWNER-CONFIRM: how long project and payment records are kept (How long we
+// keep it). To settle with an accountant once there is a first sale.
 
-export const privacyUpdated = '2026-11-02';
+export const privacyUpdated = '2026-11-03';
 
 type Link = { label: string; href: string };
 
@@ -78,7 +78,7 @@ export const privacy: {
     {
       heading: 'Security',
       paragraphs: [
-        'Our sites use HTTPS, and access to our inbox and accounts is limited to our team. No system is perfectly secure, so please don’t send passwords or payment details through a form.',
+        'Our sites use HTTPS, and access to our inbox and accounts is limited to Gonzalo Murua. No system is perfectly secure, so please don’t send passwords or payment details through a form.',
       ],
     },
     {
