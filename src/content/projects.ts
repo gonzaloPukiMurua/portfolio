@@ -39,6 +39,8 @@ function measuredDemo(name: string) {
 export const comparison = {
   sites: benchmark.comparison.sites,
   medianSeconds: benchmark.comparison.medianLcpSeconds,
+  minSeconds: benchmark.comparison.minLcpSeconds,
+  maxSeconds: benchmark.comparison.maxLcpSeconds,
   demoSeconds: benchmark.demos.map((demo) => demo.lcpSeconds),
   date: benchmark.date,
   version: benchmark.lighthouseVersion,
@@ -55,7 +57,7 @@ export const projects: Project[] = [
     category: 'Residential electrician',
     description:
       'Call-first site for a Brisbane northside electrician: one-tap call, a fixed call-out price, the suburbs covered and a four-field request form.',
-    problem: 'Of three Brisbane electrician sites we reviewed, two showed no prices.',
+    problem: 'Of three Brisbane electrician sites we reviewed in October 2026, two showed no prices.',
     decisions: [
       'Call button in the first screen and a sticky call bar on mobile',
       'A fixed call-out fee and three starting prices',
@@ -73,7 +75,7 @@ export const projects: Project[] = [
     category: 'Commercial electrical and refrigeration',
     description:
       'Six-page site for a fictional Ballarat contractor serving farms and businesses: published travel costs, starting prices and a guided quote form.',
-    problem: 'Of five Ballarat contractor sites we reviewed, none showed prices or travel costs.',
+    problem: 'Of five Ballarat contractor sites we reviewed in October 2026, none showed prices or travel costs.',
     decisions: [
       'Travel costs published by distance',
       'A guided quote form that asks what’s needed to price the job',

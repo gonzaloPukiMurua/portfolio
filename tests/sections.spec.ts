@@ -103,6 +103,7 @@ test.describe('work', () => {
     }
     // Published figures state their method.
     await expect(page.locator('#work')).toContainText('median of 3 runs per site');
+    await expect(page.locator('#work')).toContainText('not representative of all trade websites');
     // An even count: no featured card, both share one row.
     const [first, second] = await Promise.all([cards.nth(0).boundingBox(), cards.nth(1).boundingBox()]);
     expect(Math.abs(first!.width - second!.width)).toBeLessThan(2);

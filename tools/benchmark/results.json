@@ -33,6 +33,8 @@
   "comparison": {
     "sites": 8,
     "sitesThatFailed": 0,
-    "medianLcpSeconds": 16.1
+    "medianLcpSeconds": 16.1,
+    "minLcpSeconds": 4,
+    "maxLcpSeconds": 31.9
   }
 }

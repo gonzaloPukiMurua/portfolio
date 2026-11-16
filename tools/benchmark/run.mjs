@@ -124,6 +124,8 @@ await writeFile(
         sites: measured.length,
         sitesThatFailed: compared.length - measured.length,
         medianLcpSeconds: measured.length ? Math.round(median(measured.map((site) => site.lcpSeconds)) * 10) / 10 : null,
+        minLcpSeconds: measured.length ? Math.min(...measured.map((site) => site.lcpSeconds)) : null,
+        maxLcpSeconds: measured.length ? Math.max(...measured.map((site) => site.lcpSeconds)) : null,
       },
     },
     null,

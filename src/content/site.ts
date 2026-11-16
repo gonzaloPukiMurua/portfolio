@@ -50,14 +50,14 @@ export const content = {
     title: 'Websites for trades that turn visitors into booked jobs.',
     lead: 'We design and build fast websites for Australian electricians, plumbers and other trades. You own the code, the domain and the content.',
     secondaryCta: 'See our work',
-    trust: 'Based in Argentina · Available 9am–12pm Sydney time',
+    trust: 'Based in Argentina · Calls 9am–12pm Sydney time',
   },
   services: {
     eyebrow: 'Services',
     title: 'Three ways to start.',
     lead: 'Every project starts with a free 15-minute call and a fixed quote within 48 hours.',
     from: 'from',
-    note: 'Final quote depends on scope. The first year of domain and hosting is included.',
+    note: 'Build times start once we have your content. Final quote depends on scope. The first year of domain and hosting is included.',
     // {discount}, {ends}, {open} and {places} come from `foundingOffer` (content/index.ts).
     founding: {
       title: 'Founding clients.',
@@ -67,7 +67,7 @@ export const content = {
     tiers: {
       landing: {
         name: 'Landing Page',
-        duration: '1 week',
+        duration: '1–2 weeks',
         features: [
           'One page built around a single action: a call or a quote request',
           'Mobile-first design',
@@ -77,7 +77,7 @@ export const content = {
       },
       website: {
         name: 'Small Business Website',
-        duration: '1–2 weeks',
+        duration: '3–5 weeks',
         features: [
           '5–6 pages: home, services, service areas, about, contact',
           'A page for the suburbs you cover',
@@ -87,7 +87,7 @@ export const content = {
       },
       redesign: {
         name: 'Website Redesign',
-        duration: '2–4 weeks',
+        duration: '4–6 weeks',
         features: [
           'New design and structure for your current site',
           'Content moved over from the old site',
@@ -140,12 +140,12 @@ export const content = {
       },
       {
         question: 'How do I pay?',
-        answer: `50% deposit to start and 50% at launch, by PayPal, Payoneer or Prex. ${priceNote}`,
+        answer: `50% deposit to start and 50% at launch, by bank transfer, PayPal or Payoneer. ${priceNote}`,
       },
       {
         question: 'Where are you based?',
         answer:
-          'In Argentina. We are available 9am–12pm Sydney time, so calls and replies happen during your business day.',
+          'In Argentina. We book calls between 9am and 12pm Sydney time and reply to emails within one business day, so everything happens during your working week.',
       },
     ],
     // Shown first in the FAQ only while the founding-client offer is open.
@@ -165,7 +165,7 @@ export const content = {
     caseStudy: { problem: 'Problem', decisions: 'Decisions', result: 'Result' },
     load: 'Main content loads in {seconds} s on mobile.',
     comparison:
-      'In our test of {sites} Australian trade websites on {date}, the median mobile load time was {median} s, against {demos} s for our two demos. A small sample, measured the same way: Lighthouse {version}, mobile, median of 3 runs per site, Largest Contentful Paint.',
+      'In our test of {sites} Australian trade websites on {date}, the median mobile load time was {median} s (from {min} s to {max} s), against {demos} s for our two demos. A small sample, not representative of all trade websites, measured the same way: Lighthouse {version}, mobile, median of 3 runs per site, Largest Contentful Paint.',
     score: 'Lighthouse mobile, median of 3 runs',
     performance: 'performance',
     accessibility: 'accessibility',
@@ -201,7 +201,7 @@ export const content = {
         ],
       },
     ] satisfies TeamMember[],
-    meta: 'Based in Argentina · Available 9am–12pm Sydney time',
+    meta: 'Based in Argentina · Calls 9am–12pm Sydney time',
   },
   // Single-person fallback (v1 layout) while the team is incomplete.
   about: {
@@ -211,7 +211,7 @@ export const content = {
       'I’m a full-stack developer who designs and builds custom websites for small businesses.',
       'I keep you updated in writing, so the project moves without daily meetings.',
     ],
-    meta: 'Based in Argentina · Available 9am–12pm Sydney time',
+    meta: 'Based in Argentina · Calls 9am–12pm Sydney time',
     photoAlt: 'Portrait of Gonzalo Murua',
   },
   contact: {

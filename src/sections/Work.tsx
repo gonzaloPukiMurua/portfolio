@@ -29,6 +29,8 @@ export default function Work() {
           .replace('{sites}', String(comparison.sites))
           .replace('{date}', measuredDate.format(new Date(comparison.date)))
           .replace('{median}', String(comparison.medianSeconds))
+          .replace('{min}', String(comparison.minSeconds))
+          .replace('{max}', String(comparison.maxSeconds))
           .replace('{demos}', comparison.demoSeconds.join(' s and '))
           .replace('{version}', comparison.version)}
       </p>
