@@ -5,7 +5,7 @@
 // OWNER-CONFIRM: how long project and payment records are kept (How long we
 // keep it). To settle with an accountant once there is a first sale.
 
-export const privacyUpdated = '2026-11-03';
+export const privacyUpdated = '2026-11-15';
 
 type Link = { label: string; href: string };
 
@@ -49,7 +49,7 @@ export const privacy: {
         'Formspree delivers form messages to our inbox.',
         'Hostinger hosts the sites and our email.',
         'Calendly handles call bookings.',
-        'PayPal, Payoneer or Prex process your payment if you hire us.',
+        'Your bank, PayPal or Payoneer process your payment if you hire us.',
       ],
     },
     {
