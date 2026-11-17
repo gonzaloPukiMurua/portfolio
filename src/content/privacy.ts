@@ -5,7 +5,7 @@
 // OWNER-CONFIRM: how long project and payment records are kept (How long we
 // keep it). To settle with an accountant once there is a first sale.
 
-export const privacyUpdated = '2026-11-15';
+export const privacyUpdated = '2026-11-16';
 
 type Link = { label: string; href: string };
 
@@ -44,7 +44,7 @@ export const privacy: {
     },
     {
       heading: 'Who we share it with',
-      paragraphs: ['Only the providers that make this work. Some of them may process data outside Australia and Argentina.'],
+      paragraphs: ['Only the providers that make this work. Some of them may process data outside Australia, New Zealand and Argentina.'],
       items: [
         'Formspree delivers form messages to our inbox.',
         'Hostinger hosts the sites and our email.',

@@ -1,4 +1,4 @@
-// Site copy. English only since v2 (Australian trades). Copy approved by the
+// Site copy. English only since v2 (Australian trades; New Zealand added in v2.8). Copy approved by the
 // owner on 2026-10-20 (adjustable); every promise here must stay true.
 
 // OWNER-CONFIRM: the wording about GST is for the owner and their accountant to decide;
@@ -21,9 +21,9 @@ export type TierId = 'landing' | 'website' | 'redesign';
 
 export const content = {
   meta: {
-    title: 'Gelum Digital | Websites for Australian trades',
+    title: 'Gelum Digital | Websites for trades in Australia and New Zealand',
     description:
-      'Fast websites for Australian electricians, plumbers and other trades: landing pages, small business websites and redesigns, priced in AUD.',
+      'Fast websites for electricians, plumbers and other trades in Australia and New Zealand: landing pages, small business websites and redesigns, priced in AUD.',
   },
   skipLink: 'Skip to content',
   nav: {
@@ -48,16 +48,21 @@ export const content = {
     // Kept short: the badge must stay on one line at 360px.
     availability: 'New projects from November',
     title: 'Websites for trades that turn visitors into booked jobs.',
-    lead: 'We design and build fast websites for Australian electricians, plumbers and other trades. You own the code, the domain and the content.',
+    lead: 'We design and build fast websites for electricians, plumbers and other trades in Australia and New Zealand. You own the code, the domain and the content.',
     secondaryCta: 'See our work',
-    trust: 'Based in Argentina · Calls 9am–12pm Sydney time',
+    trust: 'Based in Argentina · Calls 9am–12pm Sydney time (11am–2pm NZ)',
   },
   services: {
     eyebrow: 'Services',
     title: 'Three ways to start.',
     lead: 'Every project starts with a free 15-minute call and a fixed quote within 48 hours.',
     from: 'from',
-    note: 'Build times start once we have your content. Final quote depends on scope. The first year of domain and hosting is included.',
+    note: 'Build times start once we have your content. Final quote depends on scope. Hosting has no ongoing cost, and the first year of your domain is included.',
+    // Care plan terms: freelance-web-os, clients/personal-site/v2/care-plan.md (approved 2026-11-15).
+    carePlan: {
+      title: 'Care plan · AUD 99 a month, optional.',
+      body: 'Up to 45 minutes of changes a month (prices, suburbs, photos), form and uptime checks, and a speed check every 3 months. Cancel with 30 days’ notice; your site stays online either way.',
+    },
     // {discount}, {ends}, {open} and {places} come from `foundingOffer` (content/index.ts).
     founding: {
       title: 'Founding clients.',
@@ -126,12 +131,12 @@ export const content = {
       {
         question: 'Is hosting included?',
         answer:
-          'Yes. The first year of domain and hosting is included. The domain is registered in your business name, and after the first year you pay the renewals.',
+          'Yes. Your site is hosted in an account in your name at no ongoing cost, and the first year of your domain is included. From the second year you only pay the domain renewal, about AUD 25 a year.',
       },
       {
         question: 'What support do I get after launch?',
         answer:
-          'One month of bug fixes after launch. Redesigns and anything outside the agreed scope are quoted separately.',
+          'One month of bug fixes after launch. After that, the optional care plan covers changes and checks for AUD 99 a month. Anything else is quoted before we start: AUD 30 an hour on the care plan, AUD 60 an hour without it.',
       },
       {
         question: 'What if I don’t like the design?',
@@ -145,7 +150,7 @@ export const content = {
       {
         question: 'Where are you based?',
         answer:
-          'In Argentina. We book calls between 9am and 12pm Sydney time and reply to emails within one business day, so everything happens during your working week.',
+          'In Argentina. We book calls between 9am and 12pm Sydney time (11am to 2pm in New Zealand) and reply to emails within one business day, so everything happens during your working week.',
       },
     ],
     // Shown first in the FAQ only while the founding-client offer is open.
@@ -201,7 +206,7 @@ export const content = {
         ],
       },
     ] satisfies TeamMember[],
-    meta: 'Based in Argentina · Calls 9am–12pm Sydney time',
+    meta: 'Based in Argentina · Calls 9am–12pm Sydney time (11am–2pm NZ)',
   },
   // Single-person fallback (v1 layout) while the team is incomplete.
   about: {
@@ -211,13 +216,13 @@ export const content = {
       'I’m a full-stack developer who designs and builds custom websites for small businesses.',
       'I keep you updated in writing, so the project moves without daily meetings.',
     ],
-    meta: 'Based in Argentina · Calls 9am–12pm Sydney time',
+    meta: 'Based in Argentina · Calls 9am–12pm Sydney time (11am–2pm NZ)',
     photoAlt: 'Portrait of Gonzalo Murua',
   },
   contact: {
     eyebrow: 'Contact',
     title: 'Tell us about your business.',
-    lead: 'We reply within one business day (AU time). No obligation.',
+    lead: 'We reply within one business day (Australian and New Zealand time). No obligation.',
     fields: {
       name: { label: 'Name', error: 'Please enter your name.' },
       email: {
@@ -250,7 +255,7 @@ export const content = {
     submitting: 'Sending…',
     success: {
       title: 'Thanks, your message is in.',
-      body: 'We’ll reply by email within one business day (AU time).',
+      body: 'We’ll reply by email within one business day (Australian and New Zealand time).',
       book: 'Want to talk sooner?',
     },
     error: 'Your message could not be sent. Please try again, or email us directly at',

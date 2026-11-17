@@ -60,6 +60,9 @@ export default function Services() {
       <p className="mt-6 text-sm text-muted">
         {priceNote} {services.note}
       </p>
+      <p className="mt-4 border-l-2 border-line pl-4">
+        <strong className="font-semibold">{services.carePlan.title}</strong> {services.carePlan.body}
+      </p>
       {foundingOfferOpen && (
         // data-founding-offer: hidden by the layout script once the offer's end date has passed.
         <p data-founding-offer className="mt-4 border-l-2 border-accent pl-4">

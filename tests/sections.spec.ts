@@ -284,6 +284,17 @@ test.describe('founding-client offer', () => {
   });
 });
 
+test.describe('care plan', () => {
+  test('is offered under the prices and explained in the support FAQ', async ({ page }) => {
+    await page.goto('/');
+    await expect(page.locator('#services')).toContainText('Care plan · AUD 99 a month, optional.');
+    await expect(page.locator('#services')).toContainText('your site stays online either way');
+    const item = page.locator('#process details').filter({ hasText: 'What support do I get after launch?' });
+    await item.locator('summary').click();
+    await expect(item.locator('p')).toContainText('AUD 30 an hour on the care plan, AUD 60 an hour without it');
+  });
+});
+
 test.describe('about', () => {
   test('shows both team members with photo, role and bio', async ({ page }) => {
     await page.goto('/');
