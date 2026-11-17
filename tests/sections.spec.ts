@@ -291,7 +291,8 @@ test.describe('care plan', () => {
     await expect(page.locator('#services')).toContainText('your site stays online either way');
     const item = page.locator('#process details').filter({ hasText: 'What support do I get after launch?' });
     await item.locator('summary').click();
-    await expect(item.locator('p')).toContainText('AUD 30 an hour on the care plan, AUD 60 an hour without it');
+    await expect(item.locator('p')).toContainText('AUD 45 an hour on the care plan, or AUD 60 an hour without it');
+    await expect(page.locator('#services')).toContainText('New Zealand businesses are quoted in NZD.');
   });
 });
 

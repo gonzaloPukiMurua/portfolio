@@ -3,7 +3,7 @@
 
 // OWNER-CONFIRM: the wording about GST is for the owner and their accountant to decide;
 // until then this makes no claim about tax.
-export const priceNote = 'Prices in AUD.';
+export const priceNote = 'Prices in AUD. New Zealand businesses are quoted in NZD.';
 
 export type SectionId = 'services' | 'process' | 'work' | 'about' | 'contact';
 
@@ -136,7 +136,7 @@ export const content = {
       {
         question: 'What support do I get after launch?',
         answer:
-          'One month of bug fixes after launch. After that, the optional care plan covers changes and checks for AUD 99 a month. Anything else is quoted before we start: AUD 30 an hour on the care plan, AUD 60 an hour without it.',
+          'One month of bug fixes after launch. After that, the optional care plan covers changes and checks for AUD 99 a month. Small jobs of up to 3 hours are charged at AUD 45 an hour on the care plan, or AUD 60 an hour without it. Anything bigger gets a fixed quote before we start.',
       },
       {
         question: 'What if I don’t like the design?',
